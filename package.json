@@ -1,0 +1,19 @@
+{
+  "name": "jornada-fullstack_-_samsung-ocean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wandressareis/Jornada-FullStack_-_Samsung-Ocean.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wandressareis/Jornada-FullStack_-_Samsung-Ocean/issues"
+  },
+  "homepage": "https://github.com/wandressareis/Jornada-FullStack_-_Samsung-Ocean#readme"
+}
