@@ -1,57 +1,94 @@
-const express = require('express');
-const app = express();
+const express = require("express");
+const { MongoClient } = require("mongodb");
 
-// Sinalizaremos para o express que estaos usando 
-// JSON no body das requisições
-app.use(express.json());
+const url = "mongodb://localhost:27017";
+// const url = "mongodb+srv://admin:LdQHrR3iAM9u4Mtw@cluster0.ih1f4.mongodb.net";
+const dbName = "jornada_fullstack_wandressa";
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+// Declaração da função main()
+async function main() {
+  // Realizar a conexão com o MongoClient
+  // MongoClient -> MongoDatabase -> MongoCollection
 
-app.get("/oi", function (req, res) {
-  res.send("Olá, mundo!");
-});
+  // Conexões com o client podem levar um tempo para
+  //  concluir. Portanto, utilizamos o mecanismo de
+  //  Promises do JavaScript, que permitem aguardar
+  //  esse tempo. Para isso, vamos usar o async/await.
 
-// Nosso backend armazena as pontuações das jogadas
-// Criar a lista com as pontuações
+  console.log("Conectando com o banco de dados...");
 
-const lista = [
-  {
-    id: 1, 
-    nome: "Paulo",
-    pontos: 21,
-  },
-  {
-    id: 2, 
-    nome: "Daniel",
-    pontos: 52,
-  },
-  {
-    id: 3, 
-    nome: "Beatriz",
-    pontos: 97,
-  },
-];
+  const client = await MongoClient.connect(url);
+  const db = client.db(dbName);
+  const collection = db.collection("pontuacoes");
 
-// Endpoint RED ALL - [GET] /pontuações
-app.get("/pontuacoes", function(req, res) {
-  res.send(lista);
-});
+  console.log("Banco de dados conectado com sucesso!");
 
-// Endpoint CREAT - [POST] /pontuações
-app.post("/pontuacoes", function(req, res) {
-  const item = req.body;
-  //console.log(item);
+  const app = express();
 
-  // Adicionar esse item na lista
-  lista.push({
-    id: lista.length + 1,
-    nome: item.nome,
-    pontos: item.pontos,
+  // Sinalizamos para o express que estamos usando
+  // JSON no body das requisições
+  app.use(express.json());
+
+  app.get("/", function (req, res) {
+    res.send("Hello, World!");
   });
 
-  res.send("Item criado com sucesso!");
-});
+  app.get("/oi", function (req, res) {
+    res.send("Olá, mundo!");
+  });
 
-app.listen(3000);
+  // Nosso backend armazena as pontuações das jogadas
+  // Criar a lista com as pontuações
+
+  // const lista = [
+  //   {
+  //     id: 1,
+  //     nome: "Paulo",
+  //     pontos: 21,
+  //   },
+  //   {
+  //     id: 2,
+  //     nome: "Daniel",
+  //     pontos: 52,
+  //   },
+  //   {
+  //     id: 3,
+  //     nome: "Beatriz",
+  //     pontos: 97,
+  //   },
+  // ];
+
+  // Endpoint READ ALL - [GET] /pontuacoes
+  app.get("/pontuacoes", async function (req, res) {
+    const itens = await collection
+      .find()
+      .sort({ pontos: -1 })
+      .limit(10)
+      .toArray();
+    
+    res.send(itens);
+  });
+
+  // Endpoint CREATE - [POST] /pontuacoes
+  app.post("/pontuacoes", async function (req, res) {
+    // Peguei o item do corpo da requisição
+    const item = req.body;
+    // console.log(item);
+
+    // Adicionar o item na lista
+    // lista.push({
+    //   id: lista.length + 1,
+    //   nome: item.nome,
+    //   pontos: item.pontos,
+    // });
+
+    await collection.insertOne(item);
+
+    res.send(item);
+  });
+
+  app.listen(3000);
+}
+
+// Executamos a função main()
+main();
