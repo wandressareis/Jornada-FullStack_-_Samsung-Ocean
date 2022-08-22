@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 
 // const url = "mongodb://localhost:27017";
 const url = "mongodb+srv://admin:Ce8axvEIFEKvscGd@cluster0.oogkm3c.mongodb.net/";
-const dbName = "jornada_fullstack_wandressa";
+const dbName = "Cluster0";
 
 // Declaração da função main()
 async function main() {
