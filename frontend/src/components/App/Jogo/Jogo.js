@@ -4,6 +4,17 @@ import cano from "../../assets/pipe.png";
 import mario from "../../assets/mario.gif";
 
 function Jogo() {
+
+    const [estaPulando, setEstaPulando] = useState(false);
+
+    document.onkeydown = function () {
+        console.log('On Key Down');
+
+        estaPulando = true;
+    };
+
+    console.log(15, { estaPulando });
+    
   return (
     <div className="jogo">
       <img className="nuvens" src={nuvens} alt="Nuvens" />
