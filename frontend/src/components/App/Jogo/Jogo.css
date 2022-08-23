@@ -1,0 +1,80 @@
+.jogo {
+    background: #9be5e4;
+  
+    height: 100vh;
+    width: 100%;
+  
+    overflow: hidden;
+  
+    position: relative;
+  }
+  
+  .nuvens {
+    width: 200px;
+  
+    position: absolute;
+    top: 30px;
+  
+    animation: mover-direita-para-esquerda infinite 8s linear;
+  }
+  
+  .cano {
+    width: 50px;
+  
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+  
+    /*
+    animation-name: mover-direita-para-esquerda;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    */
+  
+    animation: mover-direita-para-esquerda infinite 2s linear;
+  }
+  
+  @keyframes mover-direita-para-esquerda {
+    from {
+      right: -300px;
+    }
+  
+    to {
+      right: 100%;
+    }
+  }
+  
+  .mario {
+    height: 100px;
+  
+    position: absolute;
+    bottom: 30px;
+    left: 50px;
+  }
+  
+  .mario-pulo {
+    animation: mario-pulo 0.7s;
+  }
+  
+  @keyframes mario-pulo {
+    from {
+      bottom: 30px;
+    }
+  
+    50% {
+      bottom: 150px;
+    }
+  
+    to {
+      bottom: 30px;
+    }
+  }
+  
+  .chao {
+    background: limegreen;
+    height: 30px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+  }
