@@ -1,9 +1,10 @@
 import './App.css';
+import Jogo from './Jogo/Jogo';
 
 function App() {
   return (
     <div className="App">
-      App
+      <Jogo />
     </div>
   );
 }
