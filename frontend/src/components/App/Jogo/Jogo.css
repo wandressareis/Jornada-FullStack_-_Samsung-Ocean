@@ -1,7 +1,7 @@
 .jogo {
   background: #9be5e4;
   height: 100vh;
-  
+
   overflow: hidden;
   width: 100%;
   position: relative;
@@ -23,6 +23,23 @@
   bottom: 30px;
   left: 50px;
 }
+
+.mario-pulo {
+  animation: mario-pulo 0.7s;
+}
+
+@keyframes mario-pulo {
+  from {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 150px;
+  }
+  to {
+    bottom: 30px;
+  } 
+}
+
 
 .pipe {
   width: 50px;

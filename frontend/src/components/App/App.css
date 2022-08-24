@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+@keyframes mario-pulo {
+  from {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 150px;
+  }
+  to {
+    bottom: 30px;
+  }
+}
