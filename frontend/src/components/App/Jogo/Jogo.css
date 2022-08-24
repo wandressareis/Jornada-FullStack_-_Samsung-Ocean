@@ -1,25 +1,57 @@
 .jogo {
   background: #9be5e4;
   height: 100vh;
+  
+  overflow: hidden;
+  width: 100%;
+  position: relative;
 }
 
 .nuvens {
   width: 200px;
+
   position: absolute;
   top: 30px;
-  left: 50%;
+
+  animation: mover-direita-para-esquerda infinite 5s linear;
 }
 
 .mario {
-  width: 100px;
+  height: 100px;
+
   position: absolute;
-  top: 75%;
-  left: 10%;
+  bottom: 30px;
+  left: 50px;
 }
 
 .pipe {
   width: 50px;
+
   position: absolute;
-  top: 81%;
-  left: 90%;
+  bottom: 30px;
+  right: 50px;
+
+  /* animation-name: mover-direita-para-esquerda;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; */
+
+  animation: mover-direita-para-esquerda infinite 2s linear;
+}
+
+@keyframes mover-direita-para-esquerda {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 100%
+  }
+}
+
+.chao {
+  background: limegreen;
+  height: 30px;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }

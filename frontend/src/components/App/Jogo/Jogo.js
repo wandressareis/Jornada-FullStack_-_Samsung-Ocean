@@ -6,8 +6,12 @@ function Jogo() {
   return (
     <div className="jogo">
       <img className="nuvens" src={clouds} alt="Nuvens"/>
-      <img className="mario" src={mario} alt="Nuvens"/>
+      
+      <img className="mario" src={mario} alt="Mário"/>
+      
       <img className="pipe" src={pipe} alt="Pipe"/>
+
+      <div className="chao"></div>
     </div>
 
   );
